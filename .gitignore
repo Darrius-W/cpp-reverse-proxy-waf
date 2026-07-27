@@ -1,0 +1,24 @@
+# CMake build directory
+build/
+
+# Visual Studio Code settings (optional)
+.vscode/
+
+# Visual Studio files
+.vs/
+
+# Executables
+*.exe
+
+# Object files
+*.obj
+*.o
+
+# Debug symbols
+*.pdb
+
+# CMake generated files
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
