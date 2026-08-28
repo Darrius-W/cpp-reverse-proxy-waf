@@ -1,22 +1,22 @@
 #include "WafSocket.h"
 
-// Initialize descriptor to unallocated state in constructor
+// Initialize descriptor to unallocated state
 WafSocket::WafSocket(){
     socket_handle = -1; // -1 represents closed or invalid file descriptor
 }
 
-// Clean up data and avoid leaks with deconstructor
+// Clean up data to avoid leaks
 WafSocket::~WafSocket(){
     if (socket_handle != -1){
+        std::cout << "[WafSocket] File descriptor " << socket_handle << " closing safely by deconstructor." << std::endl;
         ::close(socket_handle);
-        std::cout << "[WafSocket] File descriptor " << socket_handle << " closed safely by deconstructor." << std::endl;
     }
 }
 
-// Return socket handle instance
+// Return socket handle in safe read-only state 
 int WafSocket::get_handle() const { return socket_handle; }
 
-// Socket allocation
+// Initialize a new network endpoint (socket) with the OS
 bool WafSocket::create_socket(int af, int socket_type, int protocol){
     // if instance already managing active pipeline, close it
     if (socket_handle != -1){
